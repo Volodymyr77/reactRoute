@@ -5,6 +5,12 @@ export  default class Users extends  React.Component {
         users: []
     }
 
+    goToHome = () => {
+        this.props.history.push({
+            pathname: '/'
+        })
+    }
+
     componentDidMount() {
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
@@ -12,8 +18,12 @@ export  default class Users extends  React.Component {
     }
 
     render() {
+
+
+
         return (
             <div>
+                <button onClick={this.goToHome}>Home</button>
                 {
                     this.state.users.map(user =>(
                         <div>
@@ -21,6 +31,7 @@ export  default class Users extends  React.Component {
                             <p>{user.username}</p>
                             <p>{user.email}</p>
 
+                            <button onClick={() => this.props.history.push('/users/${user.id}')}>ShowMe</button>
                             <hr/>
                         </div>
                     ))

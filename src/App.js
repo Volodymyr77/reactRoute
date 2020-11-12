@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-import {Route} from "react-router";
+import {Route, Switch} from "react-router";
 import {Fragment} from "react";
 import {NavLink} from "react-router-dom";
 
 import Users from "./components/Users";
 import {Posts} from "./components/Posts";
+import User from "./components/User";
 
 
 
@@ -14,7 +15,7 @@ function App() {
   return (
       <>
     <div>
-      <NavLink exact to="/">Home</NavLink> <br/>
+      <NavLink exact to="/" activeClassName = {'secondActive'} >Home</NavLink> <br/>
       <NavLink to="/users">Users</NavLink> <br/>
       <NavLink to={{
         pathname: '/posts',
@@ -23,10 +24,12 @@ function App() {
       }}>Posts</NavLink>
     </div>
     <div >
-
-      <Route exact path='/' render={ () => <h1>Hello world</h1> } />
+    <Switch>
+      <Route path='/users/:id' component={User} />
       <Route path='/users' component={Users} />
       <Route path='/posts' component={Posts} />
+      <Route exact path='/' render={ () => <h1>Hello world</h1> } />
+    </Switch>
     </div>
           </>
   );
