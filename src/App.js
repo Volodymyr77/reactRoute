@@ -7,6 +7,8 @@ import {NavLink} from "react-router-dom";
 import Users from "./components/Users";
 import {Posts} from "./components/Posts";
 import User from "./components/User";
+import {Error} from "./components/error";
+
 
 
 
@@ -29,6 +31,10 @@ function App() {
       <Route path='/users' component={Users} />
       <Route path='/posts' component={Posts} />
       <Route exact path='/' render={ () => <h1>Hello world</h1> } />
+      <Route render={() => <Error/> } />
+
+      {/*<Redirect to={'/'} />*/}
+
     </Switch>
     </div>
           </>
